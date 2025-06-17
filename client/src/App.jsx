@@ -22,7 +22,7 @@ function App () {
   return (
     <>
       <div className='KudoApp'>
-        <h1>Kudoboard</h1>
+        <title>Kudoboard </title>
       </div>
       <SearchBar
               onBoardChange={handleBoardChange}
