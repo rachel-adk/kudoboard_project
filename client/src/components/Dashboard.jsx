@@ -3,10 +3,17 @@ import "./Dashboard.css";
 import kudoBoardData from "../kudoBoardData";
 import KudoBoard from "./KudoBoard";
 
-const Dashboard = () => {
+const Dashboard = ({ searchQuery, data, KudoCards }) => {
+  const filteredBoards = searchQuery
+    ? data.filter((board) =>
+        board.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        board.description.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : kudoBoardData;
+
   return (
     <div className="dashboard">
-      {kudoBoardData.map((board, index) => (
+      {filteredBoards.map((board, index) => (
         <KudoBoard
           key={index}
           title={board.title}

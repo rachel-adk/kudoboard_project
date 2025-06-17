@@ -13,6 +13,8 @@ const KudoBoard = (props) => {
                 <h2>{props.title}</h2>
                 <h3>{props.author}</h3>
                 <h4>{props.description}</h4>
+                <button>Open</button>
+                <button>Delete</button>
 
             </div>
         </div>

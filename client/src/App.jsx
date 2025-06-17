@@ -22,12 +22,16 @@ function App () {
   return (
     <>
       <div className='KudoApp'>
-        <title>Kudoboard </title>
+        <header className='App-header'>
+        <h1>Kudoboard </h1>
+        </header>
+
       </div>
       <SearchBar
               onBoardChange={handleBoardChange}
               onClearSearch={handleClearSearch}
             />
+
             <Dashboard
               searchQuery={searchQuery}
               data = {kudoBoardData}>
