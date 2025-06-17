@@ -25,6 +25,13 @@ function App () {
         <header className='App-header'>
         <h1>Kudoboard </h1>
         </header>
+        <button className='filterButtons'>
+                    <h3>Filter by</h3>
+                    <button>All</button>
+                    <button>Celebration</button>
+                    <button>Inspiration</button>
+                    <button>Thank You</button>
+                  </button>
 
       </div>
       <SearchBar
@@ -35,6 +42,7 @@ function App () {
             <Dashboard
               searchQuery={searchQuery}
               data = {kudoBoardData}>
+
             </Dashboard>
       <footer className="footer">
         <p>Copyright 2025</p>

@@ -1,13 +1,13 @@
 const kudoBoardData = [
     {
-      image: "/kudoboard.webp",
+      image: "/kudoboardImage.jpeg",
       title: "Great Teamwork!",
       author: "Alice Johnson",
       description: "Thanks for always supporting the project and stepping up when needed."
     },
 
     {
-      image: "/kudoboard.webp",
+      image: "/kudoboardImage.jpeg",
       title: "Creative Genius",
       author: "Bob Smith",
       description: "Your ideas have really helped shape our latest campaign."
