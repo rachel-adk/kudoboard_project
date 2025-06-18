@@ -15,6 +15,7 @@ model Board {
   author      String
   cards       Card[]
   category    String
+  createdAt   DateTime @default(now())
 
 }
 
@@ -25,5 +26,7 @@ model Card {
   gif         String
   upvotes     Int(@default(0))
   Board       Board    @relation(fields: [board_id], references: [id])
-  board_id    String
+  board_id    Int
+  author      String
+  createdAt   DateTime @default(now())
 }

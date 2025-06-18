@@ -1,46 +1,40 @@
 const kudoBoardData = [
-    {
-      image: "/kudoboardImage.jpeg",
-      title: "Great Teamwork!",
-      author: "Alice Johnson",
-      description: "Thanks for always supporting the project and stepping up when needed."
-    },
+  {
+    id: 1,
+    title: "Board 1",
+    category: "Celebration",
+    author: "John Doe",
+    image: "https://picsum.photos/200/300"
+  },
+  {
+    id: 2,
+    title: "Board 2",
+    category: "Thank you",
+    author: "Jane Doe",
+    image: "https://picsum.photos/200/301"
+  },
+  {
+    id: 3,
+    title: "Board 3",
+    category: "Inspiration",
+    author: "Bob Smith",
+    image: "https://picsum.photos/200/302"
+  },
+  {
+    id: 4,
+    title: "Board 4",
+    category: "Recent",
+    author: "Alice Johnson",
+    image: "https://picsum.photos/200/303"
+  },
+  {
+    id: 5,
+    title: "Board 5",
+    category: "All/Home",
+    author: "Mike Brown",
+    image: "https://picsum.photos/200/304"
+  }
+];
 
-    {
-      image: "/kudoboardImage.jpeg",
-      title: "Creative Genius",
-      author: "Bob Smith",
-      description: "Your ideas have really helped shape our latest campaign."
-    },
-
-  //   {
-  //     image: "/kudoboard.webp",
-  //     title: "Reliable and Consistent",
-  //     author: "Cynthia Lee",
-  //     description: "Always delivers on time and with great quality."
-  //   },
-
-  //   {
-  //     image: "/kudoboard.webp",
-  //     title: "Outstanding Leadership",
-  //     author: "Charlie Davis",
-  //     description: "Your guidance kept us on track."
-  //   },
-
-  //   {
-  //     image: "/kudoboard.webp",
-  //     title: "Code Wizardry",
-  //     author: "Dana Lee",
-  //     description: "The code you wrote was clean and efficient."
-  //   },
-
-  //   {
-  //     image: "/kudoboard.webp",
-  //     title: "Customer Champion",
-  //     author: "Eli Martin",
-  //     description: "You handled the client with such care!"
-  //   },
-
-   ];
 
     export default kudoBoardData;

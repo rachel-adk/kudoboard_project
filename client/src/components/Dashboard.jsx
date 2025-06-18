@@ -2,7 +2,7 @@ import React from "react";
 import "./Dashboard.css";
 import kudoBoardData from "../kudoBoardData";
 import KudoBoard from "./KudoBoard";
-import KudoCards from "./KudoCards";
+import KudoCards from "./KudoCard";
 
 const Dashboard = ({ searchQuery, data }) => {
   // const [boards, setBoards] = useState(kudoBoardData);
@@ -27,7 +27,7 @@ const Dashboard = ({ searchQuery, data }) => {
 
   return (
     <div className="dashboard">
-     
+
       {filteredBoards.map((board, index) => (
         <KudoBoard
           key={index}
