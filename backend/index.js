@@ -4,17 +4,19 @@ const express = require('express')
 const app = express()
 const PORT = 3000
 
-app.use(express.json())
-
 //Import board routes
-const boardRoutes  = require('./routes/boardRoutes')
+const boardRoutes  = require('./routes/BoardRoutes.js')
+const cardRoutes = require('./routes/CardRoutes.js')
+
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Kudoboard!')
 })
 
-//Use board routes for /board path
-app.use('/boards', 'boardRoutes')
+//Use board and card routes for /board and /card path
+app.use('/boards', boardRoutes)
+app.use('/cards', cardRoutes)
 
 
 app.listen(PORT, () => {
