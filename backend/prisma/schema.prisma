@@ -15,22 +15,23 @@ datasource db {
 }
 
 model Board {
-  id        String   @id @default(cuid())
-  title     String
-  author    String
-  cards     Card[]
-  category  String
-  createdAt DateTime @default(now())
+  id          String  @id @default(cuid())
+  title       String
+  author      String
+  cards       Card[]
+  category    String
+  createdAt   DateTime @default(now())
+
 }
 
 model Card {
-  id        String   @id @default(cuid())
-  title     String
-  message   String
-  gif       String
-  upvotes   Int      @default(0)
-  Board     Board    @relation(fields: [id], references: [id])
-  board_id  Int
-  author    String
-  createdAt DateTime @default(now())
+  id          String   @id @default(cuid())
+  title       String
+  message     String
+  gif         String
+  upvotes     Int @default(0)
+  Board       Board    @relation(fields: [id], references: [id])
+  board_id    Int
+  author      String
+  createdAt   DateTime @default(now())
 }
