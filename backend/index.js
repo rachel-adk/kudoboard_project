@@ -78,20 +78,21 @@ app.get("/boards/:id", async (req, res) => {
   }
 });
 
-// // updating a board by id
-// app.put("/boards/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { title, description, author, cards } = req.body;
-//   try {
-//     const board = await prisma.board.update({
-//       where: { id: parseInt(id) },
-//       data: { title, description, author, category },
-//     });
-//     res.status(200).json(board);
-//   } catch (err) {
-//     res.status(404).json({ message: "Board not found" });
-//   }
-// });
+// filtering boards by categoryAdd commentMore actions
+router.get('/filter', async (req, res) => {
+    const { category } = req.query
+
+    try {
+        const filteredBoards = await prisma.plant.findMany({
+            where: category ? { category: { equals: category, mode: 'insensitive'} } : undefined,
+            include: { cards:true }
+    })
+    res.status(200).json(filteredBoards)
+    } catch(err) {
+    res.status(500).json({ message: "Error filtering boards"})
+    }
+    })
+
 
 // Deleting a board by id
 app.delete("/boards/:id", async (req, res) => {
