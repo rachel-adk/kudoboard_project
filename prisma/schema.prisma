@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Board {
-  id          String  @id @default(cuid())
+  id          Int  @id @default(autoincrement())
   title       String
   description String
   author      String
@@ -20,13 +20,13 @@ model Board {
 }
 
 model Card {
-  id          String   @id @default(cuid())
+  id          Int   @id @default(autoincrement())
   title       String
   message     String
   gif         String
-  upvotes     Int(@default(0))
-  Board       Board    @relation(fields: [board_id], references: [id])
-  board_id    Int
+  upvotes     Int @default(0)
+  boardId    Int?
+  board      Board?   @relation(fields: [boardId], references: [id])
   author      String
   createdAt   DateTime @default(now())
 }

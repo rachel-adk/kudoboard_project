@@ -78,21 +78,6 @@ app.get("/boards/:id", async (req, res) => {
   }
 });
 
-// // updating a board by id
-// app.put("/boards/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const { title, description, author, cards } = req.body;
-//   try {
-//     const board = await prisma.board.update({
-//       where: { id: parseInt(id) },
-//       data: { title, description, author, category },
-//     });
-//     res.status(200).json(board);
-//   } catch (err) {
-//     res.status(404).json({ message: "Board not found" });
-//   }
-// });
-
 // Deleting a board by id
 app.delete("/boards/:id", async (req, res) => {
   const { id } = req.params;
@@ -108,15 +93,13 @@ app.delete("/boards/:id", async (req, res) => {
 
 // Get all the cards for a board
 app.get("/boards/:id/cards", async (req, res) => {
-    const id = parseInt(req.params.id)
-    if (isNaN(id) || id <= 0){
-        res.status(400).json({ error: "Board ID is invalid"})
-        return;
-    }
+  const id = parseInt(req.params.id);
+  if (isNaN(id) || id <= 0) {
+    res.status(400).json({ error: "Board ID is invalid" });
+    return;
+  }
   try {
-    const cards = await prisma.card.findMany(
-        {where : {boardId : id}}
-    );
+    const cards = await prisma.card.findMany({ where: { boardId: id } });
     res.json(cards);
   } catch (error) {
     console.error("Error fetching cards:", error);
@@ -128,7 +111,7 @@ app.get("/boards/:id/cards", async (req, res) => {
 app.post("/boards/:id/cards", async (req, res) => {
   //Getting new card info from request body
   const { title, message, gif, author } = req.body;
-  const boardId = parseInt(req.params.id)
+  const boardId = parseInt(req.params.id);
 
   console.log("boardId:", boardId);
   console.log("request body:", req.body);
@@ -142,41 +125,36 @@ app.post("/boards/:id/cards", async (req, res) => {
       where: { id: boardId },
     });
     if (!boardExists) {
-        return res.status(404).json({ message: "Board does not exist"})
+      return res.status(404).json({ message: "Board does not exist" });
     }
     const newCard = await prisma.card.create({
-        data: { title, message, gif, author, boardId },
-    })
+      data: { title, message, gif, author, boardId },
+    });
     res.status(201).json(newCard);
   } catch (error) {
-    res.status(500).json({ message: "Could not create card"});
+    res.status(500).json({ message: "Could not create card" });
   }
 });
 
-
 // getting a single card by id
 app.get("/cards/:id", async (req, res) => {
-    const { id } = req.params;
-    console.log(id);
+  const { id } = req.params;
+  console.log(id);
 
-    try {
-      const card = await prisma.card.findUnique({
-        where: { id: parseInt(id, 10) },
-      });
+  try {
+    const card = await prisma.card.findUnique({
+      where: { id: parseInt(id, 10) },
+    });
 
-      if (!card) {
-        return res.status(404).json({ message: "Could not find card" });
-      }
-
-      res.json(card);  // don't forget to send the response when card is found!
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: "Could not fetch card data" });
+    if (!card) {
+      return res.status(404).json({ message: "Could not find card" });
     }
-  });
-
-
-
+    res.json(card);
+  } catch (err) {
+    console.error(error);
+    res.status(500).json({ message: "Could not fetch card data" });
+  }
+});
 
 // upvoting a card by id
 app.patch("/cards/:id/upvote", async (req, res) => {
@@ -185,7 +163,7 @@ app.patch("/cards/:id/upvote", async (req, res) => {
   try {
     const updatedCard = await prisma.card.update({
       where: { id },
-      data: { upvotes: {increment: 1} },
+      data: { upvotes: { increment: 1 } },
     });
     res.json(updatedCard);
   } catch (error) {
@@ -198,37 +176,25 @@ app.delete("/cards/:id", async (req, res) => {
   const id = parseInt(req.params.id);
 
   if (isNaN(id)) {
-    return res.status(404).json({ message: "Card ID not valid"})
-
-  } try {
+    return res.status(404).json({ message: "Card ID not valid" });
+  }
+  try {
     const validCard = await prisma.card.findUnique({
-        where: { id },
+      where: { id },
     });
 
     if (!validCard) {
-        return res.status(404).json({ message: "Card not found"});
+      return res.status(404).json({ message: "Card not found" });
     }
     const deletedCard = await prisma.card.delete({
       where: { id },
     });
-    return res.status(200).json({ message: "Card deleted", card:deletedCard})
+    return res.status(200).json({ message: "Card deleted", card: deletedCard });
   } catch (error) {
-    console.error("Delete error", error)
+    console.error("Delete error", error);
     res.status(500).json({ message: "Error deleting the card" });
     return;
   }
 });
-
-// app.delete("/boards/:id", async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//       await prisma.board.delete({
-//         where: { id: parseInt(id) },
-//       });
-//       res.status(200).json({ message: "Board deleted" });
-//     } catch (err) {
-//       res.status(500).json({ message: "Error deleting the board" });
-//     }
-//   });
 
 module.exports = app;
