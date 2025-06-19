@@ -78,7 +78,7 @@ app.get("/boards/:id", async (req, res) => {
   }
 });
 
-// filtering boards by categoryAdd commentMore actions
+// filtering boards by category
 router.get('/filter', async (req, res) => {
     const { category } = req.query
 
@@ -168,8 +168,7 @@ app.get("/cards/:id", async (req, res) => {
       if (!card) {
         return res.status(404).json({ message: "Could not find card" });
       }
-
-      res.json(card);  // don't forget to send the response when card is found!
+        res.json(card);
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: "Could not fetch card data" });
@@ -220,16 +219,5 @@ app.delete("/cards/:id", async (req, res) => {
   }
 });
 
-// app.delete("/boards/:id", async (req, res) => {
-//     const { id } = req.params;
-//     try {
-//       await prisma.board.delete({
-//         where: { id: parseInt(id) },
-//       });
-//       res.status(200).json({ message: "Board deleted" });
-//     } catch (err) {
-//       res.status(500).json({ message: "Error deleting the board" });
-//     }
-//   });
 
 module.exports = app;
