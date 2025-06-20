@@ -1,4 +1,4 @@
-import React, { useState, useEffect, use } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import HomePage from "./components/HomePage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -37,7 +37,7 @@ function App() {
           <header className="App-header">
             <h1>Kudoboard </h1>
           </header>
-{/* 
+{/*
           <NavBar onFilterChange={handleFilterChange} /> */}
           <Routes>
             <Route path='/' element={<HomePage/>}/>

@@ -1,7 +1,7 @@
 import React from "react";
 import "./SearchBar.css";
 
-function SearchBar({ onBoardChange, onClearSearch }) {
+function SearchBar({ onSearchChange, onClearSearch }) {
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const handleInputChange = (event) => {
@@ -11,13 +11,13 @@ function SearchBar({ onBoardChange, onClearSearch }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (searchQuery.trim()) {
-      onBoardChange(searchQuery.trim());
+      onSearchChange(searchQuery.trim());
     }
   };
 
   const handleClear = () => {
     setSearchQuery("");
-    onClearSearch();
+    onClear();
   };
 
   return (

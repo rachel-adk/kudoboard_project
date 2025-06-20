@@ -12,7 +12,7 @@ const HomePage = () => {
     const [boards, setBoards] = useState([]);
 
     const handleSearchChange = (event) => {
-        setSearch(event.target.value)
+        setSearch(query)
     };
 
     const handleClearSearch = () => {
@@ -36,7 +36,8 @@ const HomePage = () => {
     useEffect(() => {
         getBoards(search, category)
         .then((data) => {
-            if (data?.length === 0) {
+            console.log("Returned boards:",data)
+            if (data.length === 0) {
                 const welcomeBoard = [
                     {
                         id:0,

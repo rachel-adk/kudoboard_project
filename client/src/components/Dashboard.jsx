@@ -8,7 +8,7 @@ const Dashboard = ({ boards=[], setBoards }) => {
   const handleDelete = async (id) => {
     try {
       await deleteBoard(id);
-      setBoards(boards.filter((board) => board.id !== id));
+      setBoards(prev => prev.filter((board) => board.id !== id));
     } catch (error) {
       console.error(error);
   }
