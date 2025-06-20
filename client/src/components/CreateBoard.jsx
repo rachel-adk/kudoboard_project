@@ -15,9 +15,9 @@ const CreateBoard = ({ onCreate }) => {
         setFormData({...formData, [e.target.name]: e.target.value});
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log(formData);
         fetch('http://localhost:3000/boards', {
             method: 'POST',
             headers: {
@@ -63,11 +63,12 @@ const CreateBoard = ({ onCreate }) => {
                         <label>
                             Category:
                             <select
+                            name='category'
                             value={formData.category}
                             onChange={handleChange}
                         >
                             <option value="">Choose a Category</option>
-                            <option value="Thank you">Thank yoi</option>
+                            <option value="Thank you">Thank you</option>
                             <option value="Celebration">Celebration</option>
                             <option value="Inspiration">Inspiration</option>
                             </select>

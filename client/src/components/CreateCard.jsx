@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getGif } from "../api/backend_data";
 
 
@@ -45,7 +45,8 @@ const CreateCard = ({ onCreate }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, message, gifURL } = formData;
-    if (!title || !message || !gifURL) {
+    // if (!title || !message || !gifURL) {
+    if (!title || !message) {
       alert("Please fill in all fields");
       return;
     }
@@ -56,7 +57,8 @@ const CreateCard = ({ onCreate }) => {
       title: "",
       message: "",
       author: "",
-      gifURL: "",
+      // gif: formData.gifURL,
+      gif:"https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnExeDZ3YmMydHBiYXJhbDM3bDZmNjg4eXgzbzY2ajQ1emF6enM1NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TLnWsIBRegQyWxG4Dw/giphy.gif"
     });
     setGifResults([]);
     setSearchQuery("");
@@ -67,8 +69,7 @@ const CreateCard = ({ onCreate }) => {
       <button onClick={() => setShowModal(true)}>Create Card</button>
       {showModal && (
         <div className="modalOverlay" onClick={() => setShowModal(false)}>
-          <div className="modalContent" onClick={() => e.stopPropagation()}>
-            onClick={(event) => event.stopPropagation()}
+          <div className="modalContent" onClick={(e) => e.stopPropagation()}>
             <h2>Create your own Card!</h2>
             <form className="board-form" onSubmit={handleSubmit}>
               <input
@@ -90,7 +91,7 @@ const CreateCard = ({ onCreate }) => {
                 type="text"
                 placeholder="Search GIFs"
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={handleChange}
               />
               <div className="gifResults">
                 {gifResults.map((gif) => (
@@ -106,6 +107,7 @@ const CreateCard = ({ onCreate }) => {
                 name="author"
                 placeholder="Enter author(not required)"
                 value={formData.author}
+                onChange={handleChange}
               />
               <button type="submit" className="createButton">
                 Create Card
@@ -117,4 +119,4 @@ const CreateCard = ({ onCreate }) => {
     </>
   );
 };
-export default CreateBoard;
+export default CreateCard;

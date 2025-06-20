@@ -21,8 +21,10 @@ function KudoCard({ card, onDelete, onUpvote }) {
     try {
       const pinnedCard = await togglePin(card.id);
       setIsPinned(pinnedCard.pinned);
+      if (onUpdate) onUpdate(pinnedCard);
+      console.log("Pinned status updated:", pinnedCard.pinned);
     } catch (error) {
-      console.error("Error upvoting card:", error);
+      console.error("Error pinning card:", error);
     }
   };
 

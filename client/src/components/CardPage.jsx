@@ -1,6 +1,7 @@
 import { use, useEffect, useState } from "react";
 import "./Dashboard.css";
 import CardList from "./CardList";
+import CreateCard from "./CreateCard";
 import "./CardPage.css"
 import { useParams } from "react-router-dom";
 import {
@@ -73,7 +74,7 @@ const CardPage = () => {
       <a href={`/`}>Back</a>
       <header>
         <h3>{board.name}</h3>
-        <createCard onCreate={handleCreate} />
+        <CreateCard onCreate={handleCreate} />
         <CardList
           onDelete={handleDelete}
           onUpdate={handleUpdate}

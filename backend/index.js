@@ -107,7 +107,7 @@ app.get("/boards/:id/cards", async (req, res) => {
 app.post("/boards/:id/cards", async (req, res) => {
   //Getting new card info from request body
   const { title, message, gif, author } = req.body;
-  const boardId = parseInt(req.params.boardId);
+  const boardId = parseInt(req.params.id);
 
   console.log("boardId:", boardId);
   console.log("request body:", req.body);
@@ -171,7 +171,7 @@ app.patch("/cards/:id/upvote", async (req, res) => {
 app.patch("/cards/:id/pinned", async (req, res) => {
     try {
       const id = parseInt(req.params.id);
-      if (isNaN(id)) {
+      if (!id || isNaN(id)) {
         return res.status(400).json({ message: 'Card is invalid'})
       }
       const validCard =  await prisma.card.findUnique({
