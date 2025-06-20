@@ -1,0 +1,74 @@
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    background-color: #f9f9f9;
+  }
+
+  .kudoCard {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+    position: relative;
+  }
+
+  .kudoCard:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .kudoCard img {
+    width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.kudoCard h3 {
+  margin: 12px 0 6px;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.kudoCard p {
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.deleteButton,
+.upvoteButton {
+  margin-right: 8px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #f44336;
+  color: white;
+}
+
+.upvoteButton {
+  background-color: #4CAF50;
+}
+
+.pinned {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.5rem;
+  color: #ffa500;
+  cursor: pointer;
+}
+
+.unpinned {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 1.5rem;
+    color: #ccc;
+    cursor: pointer;
+  }
+
