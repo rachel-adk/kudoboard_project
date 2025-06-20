@@ -35,6 +35,7 @@ const CreateBoard = ({ onCreate }) => {
             console.log(data);
             onCreate();
             setShowModal(false);
+            setFormData({ title:"", category:"", author:""})
         })
         .catch(error => {
             console.error(error);
@@ -54,7 +55,7 @@ const CreateBoard = ({ onCreate }) => {
                             <input
                                 name="title"
                                 value={formData.title}
-                                onChange={(e) => SetTitle(e.target.value)}
+                                onChange={handleChange}
                                 required
                             />
                         </label>
@@ -62,7 +63,7 @@ const CreateBoard = ({ onCreate }) => {
                         <label>
                             Category:
                             <select
-                            value={category}
+                            value={formData.category}
                             onChange={handleChange}
                         >
                             <option value="">Choose a Category</option>
