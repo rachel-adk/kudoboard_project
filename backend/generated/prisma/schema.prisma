@@ -36,7 +36,7 @@ model Card {
   author    String
   createdAt DateTime  @default(now())
   comments  Comment[]
-  pinned    Boolean   @default(false)
+  pinned    DateTime?
 }
 
 model Comment {

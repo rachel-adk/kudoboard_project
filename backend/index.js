@@ -174,16 +174,19 @@ app.patch("/cards/:id/pinned", async (req, res) => {
       if (!id || isNaN(id)) {
         return res.status(400).json({ message: 'Card is invalid'})
       }
+      console.log('id', id)
       const validCard =  await prisma.card.findUnique({
         where: { id }
       });
+      console.log('validCard', validCard)
       if (!validCard){
         return res.status(404).json({ message: 'Card not found'})
       }
       const pinnedCards = await prisma.card.update({
         where: { id },
-        data: { pinned: !validCard.pinned },
+        data: { pinned: new Date() },
       });
+      console.log('pinnedCards', pinnedCards)
       return res.json(pinnedCards);
     } catch (error) {
         console.error('error', error)
@@ -218,9 +221,9 @@ app.delete("/cards/:id", async (req, res) => {
 });
 
 // Add a comment to a card
-app.post('/:id/cards/:id/comments', async (req, res) => {
-  const {message, author='Anonymous'} = req.body;
-  const {cardId} = req.params;
+app.post('/cards/:id/comments', async (req, res) => {
+  const {message, author='Anonymous', cardId} = req.body;
+  console.log("CardId: ", cardId);
   if (!message ){
       return res.status(400).json({message: 'Message is required'});
   }

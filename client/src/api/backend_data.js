@@ -189,7 +189,9 @@ export async function getComments(cardId) {
 
   //posting a comment for a card
   export async function postComments(data, cardId) {
+    console.log("POSTCOMMENTS");
     const url = `${BASE_URL}/cards/${cardId}/comments`;
+    console.log(data)
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -202,6 +204,7 @@ export async function getComments(cardId) {
         throw new Error(`Response status: ${response.status}`);
       }
       const json = await response.json();
+      console.log({json});
       return json;
     } catch (error) {
       console.error(error.message);

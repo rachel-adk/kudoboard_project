@@ -25,12 +25,15 @@ const Comments = ({ onClick, onClose, card, boardId }) => {
     if (!message.trim()) return;
 
     const commentData = {
+      cardId: card.id,
       message,
       author: author || "Anonymous",
     };
+    console.log(commentData);
 
     try {
-      const newComment = await postComments(boardId, card.id, commentData);
+      const newComment = await postComments(commentData, card.id);
+      console.log({ newComment });
       setComments([...comments, newComment]);
       setMessage("");
       setAuthor("");
@@ -40,15 +43,15 @@ const Comments = ({ onClick, onClose, card, boardId }) => {
   };
 
   return (
-    <div className="modalOverlay" onClick={onClick}>
+    <div className="modalOverlay" onClick={onClose}>
       <div className="modalContent" onClick={(e) => e.stopPropagation()}>
-        <button className="close-btn-comment" onClick={onClick}>
+        <button className="close-btn-comment" onClick={onClose}>
           Close
         </button>
 
-        <h2>Comments: {card?.title}</h2>
+        <h2>{card?.title}</h2>
+        <p>{card?.message}</p>
         <p>{card?.author}</p>
-        <p>{card?.description}</p>
         {card?.gif && (
           <img src={card.gif} alt="Card GIF" className="modal-gif" />
         )}

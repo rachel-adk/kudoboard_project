@@ -97,10 +97,6 @@ const CardPage = () => {
         />
       </div>
       <footer>Copyright 2025</footer>
-      {chooseCard && showModal && (
-        <Comments card={chooseCard}
-        onClose={handleCloseComments} />
-      )}
     </>
   );
 };
