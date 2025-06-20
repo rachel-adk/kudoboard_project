@@ -35,12 +35,6 @@ app.get("/boards", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Failed to get boards" });
   }
-//   try {
-//     const boards = await prisma.board.findMany();
-//     res.status(200).json(boards);
-//   } catch (error) {
-//     res.status(500).json({ message: "Failed to get boards" });
-//   }
 });
 
 // Creating a new board
@@ -94,7 +88,7 @@ app.delete("/boards/:id", async (req, res) => {
 });
 
 // Get all the cards for a board
-app.get("/boards/:boardId/cards", async (req, res) => {
+app.get("/boards/:id/cards", async (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id) || id <= 0) {
     res.status(400).json({ error: "Board ID is invalid" });
@@ -113,7 +107,7 @@ app.get("/boards/:boardId/cards", async (req, res) => {
 app.post("/boards/:id/cards", async (req, res) => {
   //Getting new card info from request body
   const { title, message, gif, author } = req.body;
-  const boardId = parseInt(req.params.id);
+  const boardId = parseInt(req.params.boardId);
 
   console.log("boardId:", boardId);
   console.log("request body:", req.body);

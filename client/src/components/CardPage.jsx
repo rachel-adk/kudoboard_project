@@ -11,7 +11,7 @@ import {
 } from "../api/backend_data";
 
 const CardPage = () => {
-  const { id: boardId } = useParams();
+  const { boardId } = useParams();
   const [cards, setCards] = useState([]);
   const [boards, setBoards] = useState([]);
 
