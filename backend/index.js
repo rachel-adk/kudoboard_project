@@ -19,14 +19,28 @@ app.listen(PORT, () => {
 
 // Get all the boards
 app.get("/boards", async (req, res) => {
+  const { category, search } = req.query;
   try {
     const boards = await prisma.board.findMany({
+      where: {
+        ...(category && { category: { equals: category, mode: "insensitive" }
+        }),
+        ...(search && {
+          title: { contains: search, mode: "insensitive" }
+        })
+      },
       include: { cards: true },
     });
     res.status(200).json(boards);
   } catch (error) {
     res.status(500).json({ message: "Failed to get boards" });
   }
+//   try {
+//     const boards = await prisma.board.findMany();
+//     res.status(200).json(boards);
+//   } catch (error) {
+//     res.status(500).json({ message: "Failed to get boards" });
+//   }
 });
 
 // Creating a new board
@@ -47,22 +61,6 @@ app.post("/boards", async (req, res) => {
   }
 });
 
-// filtering boards by category
-app.get("/filter", async (req, res) => {
-  const { category } = req.query;
-
-  try {
-    const filteredBoards = await prisma.board.findMany({
-      where: category
-        ? { category: { equals: category, mode: "insensitive" } }
-        : undefined,
-      include: { cards: true },
-    });
-    res.status(200).json(filteredBoards);
-  } catch (err) {
-    res.status(500).json({ message: "Error filtering boards" });
-  }
-});
 
 // reading a single board by id
 app.get("/boards/:id", async (req, res) => {
@@ -96,7 +94,7 @@ app.delete("/boards/:id", async (req, res) => {
 });
 
 // Get all the cards for a board
-app.get("/boards/:id/cards", async (req, res) => {
+app.get("/boards/:boardId/cards", async (req, res) => {
   const id = parseInt(req.params.id);
   if (isNaN(id) || id <= 0) {
     res.status(400).json({ error: "Board ID is invalid" });
@@ -104,7 +102,7 @@ app.get("/boards/:id/cards", async (req, res) => {
   }
   try {
     const cards = await prisma.card.findMany({ where: { boardId: id } });
-    res.json(cards);
+    res.status(200).json(cards);
   } catch (error) {
     console.error("Error fetching cards:", error);
     res.status(500).json({ message: "Failed to get cards" });
