@@ -4,7 +4,7 @@ import { deleteBoard } from "../api/backend_data";
 import KudoBoard from "./KudoBoard";
 
 
-const Dashboard = ({ boards, setBoards }) => {
+const Dashboard = ({ boards=[], setBoards }) => {
   const handleDelete = async (id) => {
     try {
       await deleteBoard(id);

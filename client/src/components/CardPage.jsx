@@ -1,6 +1,7 @@
 import { use, useEffect, useState } from "react";
 import "./Dashboard.css";
 import CardList from "./CardList";
+import "./CardPage.css"
 import { useParams } from "react-router-dom";
 import {
   getBoards,
@@ -35,7 +36,7 @@ const CardPage = () => {
 
   const handleUpdate = async (newCards) => {
     setCards((prev) =>
-      prev.map((card) => (card.id === newCards.id ? newCards : cards))
+      prev.map((card) => (card.id === newCards.id ? newCards : card))
     );
   };
 
@@ -45,7 +46,7 @@ const CardPage = () => {
         setCards(data);
       })
       .catch(console.error);
-  }, []);
+  }, [boardId]);
 
   useEffect(() => {
     getBoards().then(setBoards).catch(console.error);
@@ -72,7 +73,7 @@ const CardPage = () => {
       <a href={`/`}>Back</a>
       <header>
         <h3>{board.name}</h3>
-        <CardForm onCreate={handleCreate} />
+        <createCard onCreate={handleCreate} />
         <CardList
           onDelete={handleDelete}
           onUpdate={handleUpdate}

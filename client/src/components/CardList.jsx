@@ -1,5 +1,6 @@
 import React from "react";
 import KudoCard from "./KudoCard";
+import "./CardList.css"
 
 const CardList = ({ cards, onDelete, onUpdate }) => {
   const sortPinnedCards = [...cards].sort((a, b) => {

@@ -1,28 +1,31 @@
-import Dashboard from 'components/Dashboard';
-import CreateBoard from './CreateBoard';
+import { useState, useEffect } from 'react';
+import Dashboard from './Dashboard';
+import { createBoard, getBoards } from '../api/backend_data';
 import Category from './Category';
 import SearchBar from './SearchBar';
-import { useEffect } from 'react';
+import CreateBoard from './CreateBoard';
+
 
 const HomePage = () => {
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("");
+    const [boards, setBoards] = useState([]);
 
     const handleSearchChange = (event) => {
-        setSearch(value)
+        setSearch(event.target.value)
     };
 
     const handleClearSearch = () => {
         setSearch("")
     };
 
-    const handleCategoryChange = (event) => {
-        setCategory(value)
+    const handleCategoryChange = (category) => {
+        setCategory(category)
     }
 
-    const handleCreateBoard = () => {
+    const handleCreateBoard = async () => {
         try{
-            await CreateBoard(newBoardData);
+            await createBoard(newBoardData);
             const updatedBoards = await getBoards(search, category);
             setBoards(updatedBoards);
         } catch (error) {
@@ -30,13 +33,10 @@ const HomePage = () => {
         }
     };
 
-    const [boards, setBoards] = useState([]);
-
     useEffect(() => {
-        getBoards(search, category);
-        .then((data) => {
-            setBoards(data);
-})
+        getBoards(search, category)
+        .then((data) =>
+            setBoards(data))
         .catch(console.error);
     }, [search, category]);
 
@@ -44,10 +44,10 @@ const HomePage = () => {
         <>
             <div className='homePage'>
                 <SearchBar
-                    onSearchChange={onSearchChange}
+                    onSearchChange={handleSearchChange}
                     onClear={handleClearSearch}/>
                 <Category onCategoryChange={handleCategoryChange}/>
-                <createBoard onCreate={handleCreateBoard}/>
+                <CreateBoard onCreate={handleCreateBoard}/>
                 <Dashboard baords={boards} setBoards={setBoards}/>
             </div>
             <footer>
@@ -55,5 +55,5 @@ const HomePage = () => {
             </footer>
 
         </>
-    )
+    )}
 export default HomePage;
