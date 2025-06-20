@@ -52,7 +52,7 @@ app.get("/filter", async (req, res) => {
   const { category } = req.query;
 
   try {
-    const filteredBoards = await prisma.plant.findMany({
+    const filteredBoards = await prisma.board.findMany({
       where: category
         ? { category: { equals: category, mode: "insensitive" } }
         : undefined,
@@ -155,7 +155,7 @@ app.get("/cards/:id", async (req, res) => {
     }
     res.json(card);
   } catch (err) {
-    console.error(error);
+    console.error(err);
     res.status(500).json({ message: "Could not fetch card data" });
   }
 });

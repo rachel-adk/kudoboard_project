@@ -18,6 +18,7 @@
     "pg": "^8.16.0"
   },
   "devDependencies": {
+    "prisma": "^6.10.1",
     "vite": "^6.3.5"
   }
 }

@@ -33,4 +33,5 @@ model Card {
   board     Board    @relation(fields: [boardId], references: [id])
   author    String
   createdAt DateTime @default(now())
+  pinned    Boolean  @default(false)
 }
