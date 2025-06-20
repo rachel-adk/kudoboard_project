@@ -11,7 +11,7 @@ const HomePage = () => {
     const [category, setCategory] = useState("");
     const [boards, setBoards] = useState([]);
 
-    const handleSearchChange = (event) => {
+    const handleSearchChange = (query) => {
         setSearch(query)
     };
 
@@ -37,29 +37,6 @@ const HomePage = () => {
         getBoards(search, category)
         .then((data) => {
             console.log("Returned boards:",data)
-            // if (data.length) {
-            //     const welcomeBoard = [
-            //         {
-            //             id:0,
-            //             title:"Welcome to Kudoboard!",
-            //             author:"Team Kudoboard",
-            //             category:"Welcome",
-            //             cards:[
-            //                 {
-            //                     id: 0,
-            //                     title: "Getting Started",
-            //                     message: "Click on (Create Board) to get started",
-            //                     gif: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnExeDZ3YmMydHBiYXJhbDM3bDZmNjg4eXgzbzY2ajQ1emF6enM1NyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TLnWsIBRegQyWxG4Dw/giphy.gif",
-            //                     author: "Team Kudoboard",
-
-
-            //                 },
-
-            //             ],
-            //         },
-            //     ];
-            //     setBoards(welcomeBoard);
-            // } else{
                 setBoards(data);
 
         // }
@@ -74,7 +51,7 @@ const HomePage = () => {
             <div className='homePage'>
                 <SearchBar
                     onSearchChange={handleSearchChange}
-                    onClear={handleClearSearch}/>
+                    onClearSearch={handleClearSearch}/>
                 <Category onCategoryChange={handleCategoryChange}/>
                 <CreateBoard onCreate={(data) => handleCreateBoard(data)}/>
                 <Dashboard boards={boards} setBoards={setBoards}/>

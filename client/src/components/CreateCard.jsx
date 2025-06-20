@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getGif } from "../api/backend_data";
+import "./CreateCard.css";
 
 
 const CreateCard = ({ onCreate }) => {
@@ -40,6 +41,11 @@ const CreateCard = ({ onCreate }) => {
       gifURL: url,
     }));
     setGifResults([]);
+  };
+
+  const handleSearchChange = (e) => {
+    e.preventDefault();
+    setSearchQuery(e.target.value)
   };
 
   const handleSubmit = (e) => {
@@ -91,7 +97,7 @@ const CreateCard = ({ onCreate }) => {
                 type="text"
                 placeholder="Search GIFs"
                 value={searchQuery}
-                onChange={handleChange}
+                onChange={(e) => handleSearchChange(e)}
               />
               <div className="gifResults">
                 {gifResults.map((gif) => (

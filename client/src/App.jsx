@@ -37,12 +37,12 @@ function App() {
           <header className="App-header">
             <h1>Kudoboard </h1>
           </header>
-{/*
-          <NavBar onFilterChange={handleFilterChange} /> */}
+          <div className="cards">
           <Routes>
             <Route path='/' element={<HomePage/>}/>
             <Route path='/boards/:boardId' element={<CardPage/>}/>
           </Routes>
+          </div>
         </Router>
         </div>
     );

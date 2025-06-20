@@ -3,6 +3,7 @@ header {
     background-color: #fafafa;
     border-bottom: 1px solid #eee;
     text-align: center;
+  
   }
 
   footer {
@@ -15,7 +16,7 @@ header {
   }
 
   a {
-    display: inline-block;
+    display: flex;
     margin: 20px;
     text-decoration: none;
     color: #0066cc;

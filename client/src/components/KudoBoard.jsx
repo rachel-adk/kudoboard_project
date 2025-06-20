@@ -6,14 +6,14 @@ const KudoBoard = ({board, onDelete}) => {
     return (
         <div className="board">
             <div className='boardImage'>
-                <img src={board.image} alt="boardImage" />
+                <img src="https://picsum.photos/200/300?random=1" alt="boardImage" />
             </div>
 
             <div className='boardInfo'>
                 <h2>{board.title}</h2>
                 <h3>{board.author}</h3>
                 <h4>{board.description}</h4>
-                <Link className='openBoard' to={`/boards/${board.id}`}>Open</Link>
+                <Link className='openButton' to={`/boards/${board.id}`}>Open</Link>
                 {onDelete && (
                      <button onClick={() => onDelete(board.id)}>Delete</button>
 

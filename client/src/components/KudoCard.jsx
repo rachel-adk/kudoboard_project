@@ -3,7 +3,7 @@ import { upvoteCard,  togglePin } from "../api/backend_data";
 import "./KudoCards.css";
 
 
-function KudoCard({ card, onDelete, onUpvote }) {
+function KudoCard({ card, onDelete, onUpdate }) {
   const [isPinned, setIsPinned] = useState(card.pinned);
   const [upvotes, setUpvotes] = useState(card.upvotes);
 
@@ -11,7 +11,7 @@ function KudoCard({ card, onDelete, onUpvote }) {
     try {
       await upvoteCard(card.id);
       setUpvotes((prev) => prev + 1);
-      if (onUpvote) onUpvote(card.id);
+      if (onUpdate) onUpdate(card.id); // fix this to upvote
     } catch (error) {
       console.error("Error upvoting card:", error);
     }
@@ -21,7 +21,7 @@ function KudoCard({ card, onDelete, onUpvote }) {
     try {
       const pinnedCard = await togglePin(card.id);
       setIsPinned(pinnedCard.pinned);
-      if (onUpdate) onUpdate(pinnedCard);
+      onUpdate(pinnedCard);
       console.log("Pinned status updated:", pinnedCard.pinned);
     } catch (error) {
       console.error("Error pinning card:", error);

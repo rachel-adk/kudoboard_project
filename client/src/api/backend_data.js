@@ -1,5 +1,5 @@
 const BASE_URL = 'http://localhost:3000';
-const apiKey = import.meta.VITE_API_KEY;
+const apiKey = import.meta.env.VITE_API_KEY;
 
 // getting the boards
 export async function getBoards (search = "", category = "") {

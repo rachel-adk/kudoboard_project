@@ -58,7 +58,7 @@ const CardPage = () => {
   if (boards.length === 0) {
     return (
       <>
-        <h2>Searching for board...</h2>
+        <h2>Searching for cards...</h2>
       </>
     );
   } else if (!board) {
@@ -72,7 +72,7 @@ const CardPage = () => {
   return (
     <>
       <a href={`/`}>Back</a>
-      <header>
+      <div>
         <h3>{board.name}</h3>
         <CreateCard onCreate={handleCreate} />
         <CardList
@@ -80,7 +80,7 @@ const CardPage = () => {
           onUpdate={handleUpdate}
           cards={cards}
         />
-      </header>
+      </div>
       <footer>Copyright 2025</footer>
     </>
   );

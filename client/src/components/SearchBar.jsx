@@ -5,8 +5,13 @@ function SearchBar({ onSearchChange, onClearSearch }) {
   const [searchQuery, setSearchQuery] = React.useState("");
 
   const handleInputChange = (event) => {
-    setSearchQuery(event.target.value);
+    const newValue = event.target.value;
+    setSearchQuery(newValue);
+
+    if (newValue.trim() === "") {
+      onSearchChange("");
   };
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,7 +22,7 @@ function SearchBar({ onSearchChange, onClearSearch }) {
 
   const handleClear = () => {
     setSearchQuery("");
-    onClear();
+    onClearSearch();
   };
 
   return (

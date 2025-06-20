@@ -14,7 +14,7 @@ const CardList = ({ cards, onDelete, onUpdate }) => {
     <>
     {sortPinnedCards.length > 0 &&
       sortPinnedCards.map((card) => (
-        <KudoCard onDelete={onDelete} key={card.id} card={card} onUpdate={onUpdate}/>
+        <KudoCard onDelete={onDelete} key={card.id} card={card} onUpdate={onUpdate} />
       ))}
     </>
   );
