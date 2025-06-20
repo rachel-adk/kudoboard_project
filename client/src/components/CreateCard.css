@@ -10,6 +10,12 @@
 
 }
 
+.createCard{
+    display: flex;
+    align-items: center;
+    width:100px;
+    height:50px;
+}
 .gifResults img{
 
     width: 180px;

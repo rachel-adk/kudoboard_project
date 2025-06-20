@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import CreateBoard from './CreateBoard';
 
 
+
 const HomePage = () => {
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("");

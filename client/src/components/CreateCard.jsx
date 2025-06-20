@@ -72,7 +72,7 @@ const CreateCard = ({ onCreate }) => {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Create Card</button>
+      <button className="createCard" onClick={() => setShowModal(true)}>Create Card</button>
       {showModal && (
         <div className="modalOverlay" onClick={() => setShowModal(false)}>
           <div className="modalContent" onClick={(e) => e.stopPropagation()}>

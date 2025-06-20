@@ -1,17 +1,19 @@
 import{ useState } from "react";
 import { upvoteCard,  togglePin } from "../api/backend_data";
 import "./KudoCards.css";
+import Comments from "./Comments";
 
 
-function KudoCard({ card, onDelete, onUpdate }) {
+function KudoCard({ card, onDelete, onUpdate, onOpenComments }) {
   const [isPinned, setIsPinned] = useState(card.pinned);
   const [upvotes, setUpvotes] = useState(card.upvotes);
+
 
   const handleUpvote = async () => {
     try {
       await upvoteCard(card.id);
       setUpvotes((prev) => prev + 1);
-      if (onUpdate) onUpdate(card.id); // fix this to upvote
+      if (onUpdate) onUpdate(card.id);
     } catch (error) {
       console.error("Error upvoting card:", error);
     }
@@ -44,7 +46,14 @@ function KudoCard({ card, onDelete, onUpdate }) {
           </button>
           <button className="upvoteButton" onClick={handleUpvote}>
             Upvote: {upvotes}
-            </button>
+          </button>
+          <Comments
+            onClick={
+              (card) => onOpenComments(card)
+              }
+            onClose={() => {}}
+            card={card}
+            />
         </div>
     </div>
   );

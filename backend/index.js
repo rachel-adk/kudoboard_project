@@ -217,4 +217,46 @@ app.delete("/cards/:id", async (req, res) => {
   }
 });
 
+// Add a comment to a card
+app.post('/:id/cards/:id/comments', async (req, res) => {
+  const {message, author='Anonymous'} = req.body;
+  const {cardId} = req.params;
+  if (!message ){
+      return res.status(400).json({message: 'Message is required'});
+  }
+  try{
+      const newComment = await prisma.comment.create({
+          data: {
+              message,
+              author,
+              card: {connect: {id: parseInt(cardId)}}
+          }
+      });
+      res.status(201).json(newComment);
+  }catch(error){
+      console.error(error);
+      res.status(500).json({message: 'Failed to create comment'});}
+});
+
+// getting a comment
+app.get("/cards/:id/comments", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+
+  try {
+    const cardWithComments = await prisma.card.findUnique({
+      where: { id: parseInt(id, 10) },
+      include: {comments: true},
+    });
+
+    if (!cardWithComments) {
+      return res.status(404).json({ message: "Could not find comment for card" });
+    }
+    res.json(cardWithComments.comments);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Could not fetch comments for card" });
+  }
+});
+
 module.exports = app;

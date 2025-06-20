@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Dashboard.css";
 import CardList from "./CardList";
 import CreateCard from "./CreateCard";
@@ -15,6 +15,9 @@ const CardPage = () => {
   const { boardId } = useParams();
   const [cards, setCards] = useState([]);
   const [boards, setBoards] = useState([]);
+  const [chooseCard, setChooseCard] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
 
   const handleDelete = async (id) => {
     try {
@@ -40,6 +43,17 @@ const CardPage = () => {
       prev.map((card) => (card.id === newCards.id ? newCards : card))
     );
   };
+
+  const handleOpenComments =(card) => {
+    setChooseCard(card);
+    setShowModal(true);
+
+  }
+
+  const handleCloseComments = () => {
+    setChooseCard(null);
+    setShowModal(false);
+  }
 
   useEffect(() => {
     getCards(boardId)
@@ -72,16 +86,21 @@ const CardPage = () => {
   return (
     <>
       <a href={`/`}>Back</a>
-      <div>
-        <h3>{board.name}</h3>
+      <div className="cards">
+        <h3>{board.title}</h3>
         <CreateCard onCreate={handleCreate} />
         <CardList
           onDelete={handleDelete}
           onUpdate={handleUpdate}
           cards={cards}
+          onOpenComments={handleOpenComments}
         />
       </div>
       <footer>Copyright 2025</footer>
+      {chooseCard && showModal && (
+        <Comments card={chooseCard}
+        onClose={handleCloseComments} />
+      )}
     </>
   );
 };

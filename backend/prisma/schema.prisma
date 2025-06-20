@@ -24,6 +24,7 @@ model Board {
   // description String?
   createdAt   DateTime @default(now())
 
+
 }
 
 model Card {
@@ -36,5 +37,15 @@ model Card {
   board       Board   @relation(fields: [boardId], references: [id])
   author      String
   createdAt   DateTime @default(now())
+  comments    Comment[]
   pinned      Boolean @default(false)
+}
+
+model Comment {
+  id          Int  @id @default(autoincrement())
+  message     String
+  author      String
+  cardId      Int
+  card        Card   @relation(fields: [cardId], references: [id])
+  createdAt   DateTime @default(now())
 }

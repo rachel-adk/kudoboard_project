@@ -1,28 +1,28 @@
 .card-list {
-    display: flex;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    justify-content: center;
-    background-color: #f9f9f9;
-  }
+  display: grid; /* Use CSS Grid */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  background-color: #f9f9f9;
+}
 
-  .kudoCard {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.3s ease;
-    position: relative;
-  }
+.kudoCard {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+  position: relative;
+}
 
-  .kudoCard:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
+.kudoCard:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
 
-  .kudoCard img {
-    width: 100%;
+.kudoCard img {
+  width: 100%;
   height: auto;
   border-radius: 8px;
 }
@@ -64,10 +64,10 @@
 }
 
 .unpinned {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    font-size: 1.5rem;
-    color: #ccc;
-    cursor: pointer;
-  }
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+}

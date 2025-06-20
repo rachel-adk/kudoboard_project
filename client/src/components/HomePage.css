@@ -1,0 +1,21 @@
+.homePage {
+    max-width: 1200px;
+    margin: 0 auto;          /* center horizontally */
+    padding: 20px 16px;      /* some padding around */
+    display: flex;
+    flex-direction: column;
+    gap: 24px;               /* space between children */
+    min-height: 80vh;        /* give some vertical height */
+    background-color: #fafafa;
+    box-sizing: border-box;
+  }
+
+  footer {
+    text-align: center;
+    padding: 12px 0;
+    background-color: #222;
+    color: #eee;
+    font-size: 0.9rem;
+    margin-top: 40px;
+    user-select: none;
+  }
