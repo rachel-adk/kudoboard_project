@@ -117,6 +117,25 @@ export async function upvoteCard(cardId) {
     }
 }
 
+// pinning a card
+export async function togglePin(cardId) {
+    const url = new URL(`${BASE_URL}/cards/${cardId}/pinned`);
+
+    try{
+        const response = await fetch (url, {
+            method: 'PATCH',
+        })
+        if (!response.ok){
+            throw new Error(`Something went wrong: ${response.status}`);
+        }
+        const json = await response.json();
+        return json;
+    } catch(error) {
+        console.error(error.message)
+        throw error;
+    }
+}
+
 // deleting a card
 export async function deleteCard(cardId) {
     const url = new URL(`${BASE_URL}/${cardId}`);
@@ -130,6 +149,22 @@ export async function deleteCard(cardId) {
         }
         const json = await response.json();
         console.log(json);
+    } catch(error) {
+        console.error(error.message)
+    }
+}
+
+// getting gifs for cards
+export async function getGif(searchQuery) {
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchQuery}&limit=25&offset=0&rating=g&lang=en`;
+
+    try{
+        const response = await fetch (url);
+        if (!response.ok){
+            throw new Error(`Something went wrong: ${response.status}`);
+        }
+        const json = await response.json();
+        return json.data;
     } catch(error) {
         console.error(error.message)
     }

@@ -175,6 +175,30 @@ app.patch("/cards/:id/upvote", async (req, res) => {
   }
 });
 
+// pinning a card by id
+app.patch("/cards/:id/pinned", async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      if (isNaN(id)) {
+        return res.status(400).json({ message: 'Card is invalid'})
+      }
+      const validCard =  await prisma.card.findUnique({
+        where: { id }
+      });
+      if (!validCard){
+        return res.status(404).json({ message: 'Card not found'})
+      }
+      const pinnedCards = await prisma.card.update({
+        where: { id },
+        data: { pinned: !validCard.pinned },
+      });
+      return res.json(pinnedCards);
+    } catch (error) {
+        console.error('error', error)
+      res.status(500).json({ message: "Could not pin card" });
+    }
+  });
+
 // Deleting a card by id
 app.delete("/cards/:id", async (req, res) => {
   const id = parseInt(req.params.id);

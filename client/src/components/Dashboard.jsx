@@ -1,58 +1,33 @@
 import React from "react";
 import "./Dashboard.css";
-import kudoBoardData from "../kudoBoardData";
+import { deleteBoard } from "../api/backend_data";
 import KudoBoard from "./KudoBoard";
-import KudoCards from "./KudoCard";
 
-const Dashboard = ({ searchQuery, data }) => {
-  // const [boards, setBoards] = useState(kudoBoardData);
-  // const [openBoard, setOpenBoard] = useState(null);
 
-  // const handleOpenBoard = (board) => {
-  //   setOpenBoard(board);
-  // };
-
-  // const handleDeleteBoard = (board) => {
-  //   setBoards(boards.filter((b) => b.title !== board.title));
-  //   if {openBoard && openBoard.title === board.title} {
-  //     setOpenBoard(null);
-  //   }
-  // };
-  const filteredBoards = searchQuery
-    ? data.filter((board) =>
-        board.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        board.description.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : data;
+const Dashboard = ({ boards, setBoards }) => {
+  const handleDelete = async (id) => {
+    try {
+      await deleteBoard(id);
+      setBoards(boards.filter((board) => board.id !== id));
+    } catch (error) {
+      console.error(error);
+  }
+}
 
   return (
     <div className="dashboard">
 
-      {filteredBoards.map((board, index) => (
+      {boards.map((board) => (
         <KudoBoard
-          key={index}
-          title={board.title}
-          image={board.image}
-          description={board.description}
-          author={board.author}
+          key={board.id}
+          board ={board}
+          onDelete={handleDelete}
         />
       ))}
     </div>
   );
 };
 {
-  /* </div>
-            {!searchQuery && (
-              <div className='loadMore'>
-              <button onClick={loadMore}>
-              <p>Load More</p>
-              </button>
-          </div>
-        )}
-        {selectCard &&
-          <ModalDisplay movie = {selectCard}
-                                onClose={() => setSelectCard(null)}/>}
-      </> */
 }
 
 export default Dashboard;

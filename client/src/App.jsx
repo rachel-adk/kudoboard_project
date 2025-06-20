@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import kudoBoardData from "./kudoBoardData";
 import KudoCardData from "./KudoCardData";
 import SearchBar from "./components/SearchBar";
@@ -8,6 +9,11 @@ import CardPage from "./components/CardPage";
 
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [filters, setFilters] = useState({});
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+  }
 
   // import ModalDisplay from './ModalDisplay'
 
@@ -20,19 +26,25 @@ function App() {
   };
 
   return (
-    <>
-      <div className="KudoApp">
+    <Router>
+      <main>
         <header className="App-header">
           <h1>Kudoboard </h1>
         </header>
-        <div className="filterButtons">
+
+        <navbar onFilterChange={handleFilterChange} />
+        <Routes>
+          <Route path='/' element={<Dashboard/>}/>
+          <Route path='/boards/:boardId' element={<CardPage/>}/>
+        </Routes>
+        {/* <div className="filterButtons">
           <h3>Filter by</h3>
           <button>All</button>
           <button>Celebration</button>
           <button>Inspiration</button>
           <button>Thank You</button>
-        </div>
-      </div>
+        </div> */}
+      </main>
       <SearchBar
         onBoardChange={handleBoardChange}
         onClearSearch={handleClearSearch}
@@ -44,7 +56,7 @@ function App() {
       <footer className="footer">
         <p>Copyright 2025</p>
       </footer>
-    </>
+    </Router>
   );
 }
 

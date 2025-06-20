@@ -1,0 +1,19 @@
+.board-form {
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.board-form label {
+    margin: 10px;
+}
+
+.board-form input {
+    margin: 10px;
+}
+
+.form-buttons {
+    display: flex;
+    align-items: center;
+}

@@ -1,20 +1,20 @@
 import React from 'react'
 import './KudoBoard.css'
-//import kudoBoardData from './kudoBoardData';
+import { Link } from 'react-router-dom';
 
-const KudoBoard = (props) => {
+const KudoBoard = ({board, onDelete}) => {
     return (
         <div className="board">
             <div className='boardImage'>
-                <img src={props.image} alt="boardImage" />
+                <img src={board.image} alt="boardImage" />
             </div>
 
             <div className='boardInfo'>
-                <h2>{props.title}</h2>
-                <h3>{props.author}</h3>
-                <h4>{props.description}</h4>
-                <button>Open</button>
-                <button>Delete</button>
+                <h2>{board.title}</h2>
+                <h3>{board.author}</h3>
+                <h4>{board.description}</h4>
+                <Link className='openBoard' to={`/boards/${board.id}`}>Open</Link>
+                <button onClick={() => onDelete(board.id)}>Delete</button>
 
             </div>
         </div>
