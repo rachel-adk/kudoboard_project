@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://kudoboard-project.onrender.com';
 const apiKey = import.meta.env.VITE_API_KEY;
 
 // getting the boards
