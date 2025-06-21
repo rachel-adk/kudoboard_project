@@ -85,16 +85,18 @@ const CardPage = () => {
 
   return (
     <>
-      <a href={`/`}>Back</a>
-      <div className="cards">
-        <h3>{board.title}</h3>
-        <CreateCard onCreate={handleCreate} />
-        <CardList
-          onDelete={handleDelete}
-          onUpdate={handleUpdate}
-          cards={cards}
-          onOpenComments={handleOpenComments}
-        />
+      <div className="cards-page">
+        <a href={`/`}>Back</a>
+        <div className="cards-page-card">
+          <h3>{board.title}</h3>
+          <CreateCard onCreate={handleCreate} />
+          <CardList
+            onDelete={handleDelete}
+            onUpdate={handleUpdate}
+            cards={cards}
+            onOpenComments={handleOpenComments}
+          />
+        </div>
       </div>
       <footer>Copyright 2025</footer>
     </>

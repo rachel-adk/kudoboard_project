@@ -1,14 +1,18 @@
 
-.cards {
-  max-width: 900px;
-  margin: 20px auto;
+.cards-page {
+  width: 100%;
   padding: 15px;
   background: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+.cards-page-card {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 
-.cards h3 {
+}
+.cards-page h3 {
   margin-bottom: 20px;
   font-size: 2rem;
   color: #333;
@@ -40,12 +44,14 @@ footer {
 
 /* Responsive tweaks */
 @media (max-width: 600px) {
-  .cards {
+  .cards-page {
+    display: flex;
+    flex-wrap: wrap;
     margin: 10px;
     padding: 10px;
   }
 
-  .cards h3 {
+  .cards-page h3 {
     font-size: 1.5rem;
   }
 }
